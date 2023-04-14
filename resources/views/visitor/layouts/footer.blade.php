@@ -1,4 +1,4 @@
-<footer class="py-5 footer">
+<footer class="py-5 footer container-fluid">
     <div class="container">
         <p class="float-end mb-1 backtop_container">
             <a href="#" class="backtop"><i class="fa fa-angle-double-up fa-xl"></i></a>

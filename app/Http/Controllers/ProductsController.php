@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\File;
 
 class ProductsController extends Controller
 {
+    //prevent anyone go to users pages throughout the write users routes in URL-> only people who have these permissions can reach to it
+
+    function __construct()
+    {
+        $this->middleware('permission:product-list|product-create|product-edit|product-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:product-create', ['only' => ['create','store']]);
+        $this->middleware('permission:product-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:product-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +27,7 @@ class ProductsController extends Controller
     public function index()
     {
         $products = products::all();
-        return view('admin.products.index',compact('products'));
+        return view('dashboard.products.index',compact('products'));
     }
 
     /**
@@ -30,7 +39,7 @@ class ProductsController extends Controller
     {
         $shipping_rates=shipping_rates::all();
         $categories=categories::all();
-        return view('admin.products.create' ,compact('shipping_rates','categories'));
+        return view('dashboard.products.create' ,compact('shipping_rates','categories'));
 
     }
 
@@ -108,7 +117,7 @@ class ProductsController extends Controller
         $shipping_rates=shipping_rates::all();
         $categories=categories::all();
 
-        return view('admin.products.edit',compact('products','id','shipping_rates','categories'));
+        return view('dashboard.products.edit',compact('products','id','shipping_rates','categories'));
     }
 
     /**

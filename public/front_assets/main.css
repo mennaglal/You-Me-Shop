@@ -13,6 +13,7 @@ body{
     --bs-primary-gray:#efe8e8;
     --bs-secondary-blue:#022058;
     --bs-secondary-gray:#f1f1f1 ;
+    --bs-dark-gray:#605f5f ;
 }
 
 /* start navbar style */
@@ -59,6 +60,15 @@ body{
 }
 
 /* end welcome part  style */
+
+/* start offers part  style */
+.offer_icon{
+    color: #ce0b60 !important;
+}
+.offer_header{
+    color: var(--bs-secondary-blue); !important;
+}
+/* end offers part  style */
 
 /* start product items style */
 .products_menu{

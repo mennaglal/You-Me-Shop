@@ -17,8 +17,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('orders')->cascadeOnDelete()->cascadeOnUpdate();
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->integer('product_quantity');
+            $table->double('product_total_price');
             $table->double('subtotal_price');
             $table->double('shipping_price');
             $table->double('vat_price');

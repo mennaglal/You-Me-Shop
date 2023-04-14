@@ -35,7 +35,7 @@
                                    <input type="hidden" value="{{ $product->shipping_rate_id}}" name="shipping_rate_id">
                                    <input type="hidden" value="{{ $product->image }}"  name="image">
                                    <input type="hidden" value="1" name="quantity">
-                                   <button class="btn btn-sm btn-outline-secondary addCart_btn" id="AddToCart_btn" type="button">Add To Cart</button>
+                                   <button class="btn btn-sm btn-outline-secondary addCart_btn" id="AddToCart_btn" type="button"><i class="fa-solid fa-cart-plus fa-1x"></i> Add To Cart</button>
                                </form>
                            </div>
                         </div>

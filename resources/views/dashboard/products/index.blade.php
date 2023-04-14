@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('dashboard.layouts.master')
 @section('page-title','Products')
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{asset('assets/ltr/plugins/table/datatable/datatables.css')}}" />
@@ -55,10 +55,13 @@
         </div>
     </div>
     <div class="layout-px-spacing">
+        @can('product-create')
             <a class="btn btn-success m-3" href="{{ route('products.create') }}">Add new product</a>
+        @endcan
         <div class="row" id="cancel-row">
                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                     <div class="widget-content widget-content-area br-6">
+                        @can('product-list')
                         <table id="html5-extension" class="table table-hover non-hover" style="width:100%">
                             <thead>
                             <tr>
@@ -101,8 +104,10 @@
                                     <td>{{ $product->weight}} Kg</td>
                                     <td>{{ $product->ShippingRate->country}}</td>
                                     <td>
+                                        @can('product-edit')
                                         <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
-
+                                        @endcan
+                                        @can('product-delete')
                                         <a type="button"
                                            class="btn btn-danger"
                                            data-id="{{$product->id}}"
@@ -110,11 +115,13 @@
                                            data-target="#deleteModal">
                                             Delete
                                         </a>
+                                         @endcan
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
+                        @endcan
                     </div>
                 </div>
             </div>

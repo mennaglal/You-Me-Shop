@@ -57,7 +57,8 @@
                                 @csrf
                                 <input type="hidden" value="{{ $item->id }}" name="id">
                                 <button class="remove_btn pr-5 pl-5 pb-1 pb-1">
-                                    <i class="fa-solid fa-cart-xmark"></i>                                </button>
+                                    <i class="fa-solid fa-xmark fa-xl"></i>
+                                </button>
                             </form>
                         </td>
 

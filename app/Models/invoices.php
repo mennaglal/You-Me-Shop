@@ -13,4 +13,12 @@ class invoices extends Model
     {
         return $this->belongsTo('App\Models\products','product_id','id');
     }
+    public function customer()
+    {
+        return $this->belongsTo('App\Models\customers','customer_id','id');
+    }
+    public function order()
+    {
+        return $this->belongsTo('App\Models\orders','order_id','id');
+    }
 }

@@ -42,11 +42,35 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        //get time now and add it to order date in orders table
+        //get time now and add it to order date in orders table and order id to add it in invoice table
 
         $timenow = Carbon::now();
         $order_id=DB::table('orders')->insertGetId([
             'order_date' => $timenow, ]);
+
+        // add customer info to customer table and get customer id to add it in invoice table
+
+        $request->validate([
+            'customer_name' => 'required',
+            'customer_email' => 'required',
+            'customer_phone' => 'required',
+            'customer_country' => 'required',
+            'customer_address' => 'required',
+        ],[
+            'customer_name.required' =>'please entre your name',
+            'customer_email.required' =>'please entre your email',
+            'customer_phone.required' =>'please entre your phone',
+            'customer_country.required' =>'please choose your country',
+            'customer_address.required' =>'please entre your address',
+        ]);
+
+        $customer_id=DB::table('customers')->insertGetId([
+            'customer_name' => $request->customer_name,
+            'customer_email' => $request->customer_email,
+            'customer_phone' => $request->customer_phone,
+            'customer_country' => $request->customer_country,
+            'customer_address' => $request->customer_address,
+            ]);
 
         $subtotal=0;
         $shippings=0;
@@ -70,9 +94,12 @@ class OrdersController extends Controller
             //get info for every product to calculate subtotal , shippings, vat
 
             $productName = products::where('id',$selectedOption->id)->first()->name;
-            $productPrice = products::where('id',$selectedOption->id)->first()->price;
+            $proPrice = products::where('id',$selectedOption->id)->first()->price;
             $productWeight = products::where('id',$selectedOption->id)->first()->weight;
             $shipping_rates_id = products::where('id',$selectedOption->id)->first()->shipping_rates_id;
+
+            // every product price =price * quantity
+            $productPrice=$proPrice*$selectedOption->quantity;
 
             //get shipping_rate to calculate shippings
 
@@ -90,7 +117,7 @@ class OrdersController extends Controller
             //count tops (t-shirt or blouse)
 
             if(strtolower($productName)=='t-shirt'|| strtolower($productName)=='blouse'){
-                $count_two_tops+=1;
+                $count_two_tops+=intval($selectedOption->quantity);
             }
 
             // calculate subtotal , shippings, vat
@@ -99,9 +126,13 @@ class OrdersController extends Controller
             $shippings+=(($productWeight*1000)/100)*$shipping_rate;
             $vat_price+=$productPrice*0.14;
         }
-        foreach ($_POST['products_id'] as $selectedOption) {
+        foreach ($cartItems as $selectedOption) {
+
             $productName = products::where('id',$selectedOption->id)->first()->name;
-            $productPrice = products::where('id',$selectedOption->id)->first()->price;
+            $proPrice = products::where('id',$selectedOption->id)->first()->price;
+
+            // every product price =price * quantity
+            $productPrice=$proPrice*$selectedOption->quantity;
 
             //check if  two tops (t-shirt or blouse) exist then 50% off jacket discount exists and add it discount offers table
 
@@ -124,17 +155,22 @@ class OrdersController extends Controller
 
         // add order id , products ids and calculations into invoice table
         foreach ($cartItems as $selectedOption) {
+            $product_total_price=($selectedOption->price*$selectedOption->quantity);
             invoices::create([
                 'order_id' => $order_id,
+                'customer_id' => $customer_id,
                 'product_id' => $selectedOption->id,
+                'product_quantity' => doubleval($selectedOption->quantity),
+                'product_total_price' => doubleval($product_total_price),
                 'subtotal_price' => doubleval($subtotal),
                 'shipping_price' => doubleval($shippings),
                 'vat_price' => doubleval($vat_price),
                 'total_price' => doubleval($total),
             ]);
         }
+        \Cart::clear();
         // take order id and go to invoice controller
-        return redirect()->route('invoices.show',$order_id);
+        return redirect()->route('invoice_show',$order_id);
 
     }
 

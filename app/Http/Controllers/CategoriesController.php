@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
+    //prevent anyone go to users pages throughout the write users routes in URL-> only people who have these permissions can reach to it
+
+    function __construct()
+    {
+        $this->middleware('permission:category-list|category-create|category-edit|category-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:category-create', ['only' => ['create','store']]);
+        $this->middleware('permission:category-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:category-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +25,7 @@ class CategoriesController extends Controller
     {
         //get all categories and return it to categories page
         $categories = categories::all();
-        return view('admin.categories.index',compact('categories'));
+        return view('dashboard.categories.index',compact('categories'));
     }
 
     /**
@@ -27,7 +36,7 @@ class CategoriesController extends Controller
     public function create()
     {
         //return to  create categories page
-        return view('admin.categories.create');
+        return view('dashboard.categories.create');
     }
 
     /**
@@ -78,7 +87,7 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         $category = categories::find($id);
-        return view('admin.categories.edit',compact('category','id'));
+        return view('dashboard.categories.edit',compact('category','id'));
     }
 
 

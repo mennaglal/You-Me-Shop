@@ -1,10 +1,35 @@
 .invoice_header{
-    text-align: right;
-    color:var(--bs-primary-orange) ;
-}
-.invoice{
+    color:var(--bs-primary-white) ;
+    background-color:var(--bs-primary-orange) ;
+    text-align: center;
     padding: 1% 2%;
-    border-bottom:  3px solid var(--bs-primary-orange);
+    height: 15vh !important;
+    word-spacing: calc(0.3rem + 0.3vw) !important;
+    /*font-weight: bold;*/
+    /*border: 1px solid var(--bs-primary-blue);*/
+}
+.trapezoid { transform: perspective(900px) rotateY(-45deg) scale(1.1,1.1); }
+.invoice_head{
+    color: var(--bs-primary-orange);
+}
+.customer_name{
+    text-transform: capitalize;
+    font-weight: bold;
+}
+.customer_phone{
+    word-spacing: calc(1.8rem + 0.3vw) !important;
+    color: var(--bs-dark-gray);
+}
+.customer_info{
+    font-weight: 400;
+    color: black;
+}
+.customer_country{
+    word-spacing: calc(0.5rem + 0.3vw) !important;
+    color:var(--bs-dark-gray);
+}
+.invoice_date{
+    font-size: calc(0.5rem + 0.3vw) !important;
 }
 .table_head{
     background-color: var(--bs-secondary-blue);
@@ -22,4 +47,8 @@
     color: var(--bs-primary-white);
     font-weight: bold;
     padding: 2%;
+}
+.product_name_invoice{
+    text-transform: capitalize;
+    font-weight: bold;
 }

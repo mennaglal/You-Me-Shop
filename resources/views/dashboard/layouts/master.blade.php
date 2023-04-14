@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    @include('admin.layouts.header')
+    @include('dashboard.layouts.header')
     @yield("css")
 </head>
 <body class="alt-menu sidebar-noneoverflow">
@@ -10,7 +10,7 @@
     <div class="main-container sidebar-closed sbar-open" id="container">
         <!--  BEGIN NAVBAR  -->
         <div class="header-container fixed-top">
-            @include('admin.layouts.navbar')
+            @include('dashboard.layouts.navbar')
         </div>
         <!--  END NAVBAR  -->
 
@@ -19,7 +19,7 @@
         <div class="search-overlay"></div>
 
         <!--  BEGIN SIDEBAR  -->
-        @include('admin.layouts.sidebar')
+        @include('dashboard.layouts.sidebar')
         <!--  END SIDEBAR  -->
 
         <!--  BEGIN CONTENT AREA  -->
@@ -31,7 +31,7 @@
     </div>
     <!-- END MAIN CONTAINER -->
 
-    @include('admin.layouts.footer-scripts')
+    @include('dashboard.layouts.footer-scripts')
     @yield("js")
 </body>
 </html>

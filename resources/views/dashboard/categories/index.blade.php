@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('dashboard.layouts.master')
 @section('page-title','Categories')
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{asset('assets/ltr/plugins/table/datatable/datatables.css')}}" />
@@ -56,10 +56,13 @@
     </div>
 
     <div class="layout-top-spacing layout-px-spacing">
+        @can('category-create')
             <a class="btn btn-success m-3" href="{{ route('categories.create') }}">Add new category</a>
-        <div class="row" id="cancel-row">
+        @endcan
+          <div class="row" id="cancel-row">
             <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                 <div class="widget-content widget-content-area br-6">
+                    @can('category-list')
                     <table id="html5-extension" class="table table-hover non-hover" style="width:100%">
                         <thead>
                         <tr>
@@ -78,19 +81,24 @@
                                     {{ $category->description }}
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary" href="{{ route('categories.edit',$category->id) }}">Modifier</a>
+                                    @can('category-edit')
+                                    <a class="btn btn-primary" href="{{ route('categories.edit',$category->id) }}">Edit</a>
+                                    @endcan
+                                    @can('category-delete')
                                     <a type="button"
                                        class="btn btn-danger"
                                        data-id="{{$category->id}}"
                                        data-toggle="modal"
                                        data-target="#deleteModal">
-                                        Supprimer
+                                        Delete
                                     </a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
+                    @endcan
                 </div>
             </div>
         </div>

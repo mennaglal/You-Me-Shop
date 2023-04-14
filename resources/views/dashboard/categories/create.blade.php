@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('dashboard.layouts.master')
 @section('page-title','Add-Category')
 @section('css')
     <link href="{{asset('assets/ltr/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
