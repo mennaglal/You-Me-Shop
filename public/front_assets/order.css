@@ -1,0 +1,28 @@
+.order_header{
+    text-align: center;
+}
+.order{
+    color:var(--bs-primary-orange) ;
+}
+.order_form{
+    background-color: var(--bs-secondary-gray);
+    padding: 2% !important;
+    border-radius: 10px;
+    /*border: 3px solid #8b8686;*/
+}
+.btn_order{
+    background-color: var(--bs-primary-blue) !important;
+    color: var(--bs-primary-white)!important;
+    border-color: var(--bs-primary-blue)!important;
+}
+.btn_order:hover{
+    background-color: #123984!important;
+    color: var(--bs-primary-white)!important;
+    border-color: #123984!important;
+}
+.product_select{
+    height: 40vh !important;
+}
+.product_select_header{
+    color:  var(--bs-secondary-blue) !important;
+}

@@ -1,0 +1,25 @@
+.invoice_header{
+    text-align: right;
+    color:var(--bs-primary-orange) ;
+}
+.invoice{
+    padding: 1% 2%;
+    border-bottom:  3px solid var(--bs-primary-orange);
+}
+.table_head{
+    background-color: var(--bs-secondary-blue);
+    color: var(--bs-primary-white);
+}
+.result{
+    display: inline-flex;
+}
+.result_num{
+    font-weight: bold;
+    color:var(--bs-primary-orange) ;
+}
+.result_total{
+    background-color: var(--bs-primary-orange);
+    color: var(--bs-primary-white);
+    font-weight: bold;
+    padding: 2%;
+}

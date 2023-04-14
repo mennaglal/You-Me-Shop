@@ -1,0 +1,19 @@
+.product_details_container{
+    padding: 1rem;
+}
+.product_details_img{
+    width: 350px;
+    height: 350px;
+}
+.product_details_name{
+    text-transform: capitalize;
+    font-weight: bold;
+    color: var(--bs-primary-blue);
+}
+.product_price{
+    color: var(--bs-primary-orange);
+    font-weight: bold;
+}
+.addCart_btn{
+    float: right;
+}

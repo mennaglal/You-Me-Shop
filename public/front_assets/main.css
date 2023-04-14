@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.mb-10{
+    margin-bottom: 6rem!important;
+}
+:root{
+    --bs-primary-blue:#1848a3;
+    --bs-primary-orange: #e96525;
+    --bs-primary-white: #ffffff;
+    --bs-primary-gray:#efe8e8;
+    --bs-secondary-blue:#022058;
+    --bs-secondary-gray:#f1f1f1 ;
+}
+
+/* start navbar style */
+
+#logo{
+    width: 30%;
+    max-height: 100% !important;
+}
+.nav-items{
+    font-size: 23px;
+}
+.item{
+    color: var(--bs-primary-blue);
+}
+.nav .active{
+    color: var(--bs-primary-orange);
+    font-weight: bold;
+}
+
+.item:hover{
+    color: var(--bs-primary-orange);
+}
+
+/* end navbar style */
+
+/* start welcome part  style */
+
+.welcome_name{
+    color: var(--bs-primary-orange) !important;
+    font-weight: 400;
+    font-size: calc(1.5rem + 1.8vw);
+}
+.welcome_span{
+    color: var(--bs-primary-blue) !important;
+    font-weight: 600;
+}
+.carousel_img{
+    height: 60vh !important;
+    max-height: 100% !important;
+}
+.welcome_text{
+    font-weight: bold;
+    color: var(--bs-secondary-blue); !important;
+}
+
+/* end welcome part  style */
+
+/* start product items style */
+.products_menu{
+    color: var(--bs-primary-orange) !important;
+    font-weight: 400;
+    font-size: calc(1.5rem + 1.8vw);
+    text-align: center;
+    text-transform: capitalize;
+}
+.products_list{
+    text-align: center;
+}
+.product_img{
+    height: 140px !important;
+    width: 140px !important;
+    border-radius: 50%;
+}
+.product_info{
+    background-color: var( --bs-primary-gray);
+    border-radius: 5%;
+    margin: 2%;
+}
+.product_name{
+    color: var(--bs-primary-orange) !important;
+    font-weight: bold;
+}
+.product_number{
+    color: var(--bs-primary-orange);
+    font-weight: bold;
+}
+/* end product items style */
+
+/* start footer style */
+.footer{
+    background-color: var(--bs-secondary-blue);
+    color: var( --bs-primary-white);
+}
+.backtop{
+    color: var( --bs-primary-white);
+    background-color: var(--bs-primary-orange);
+    border-radius: 50%;
+    padding: 30% 40% !important;
+}
+.backtop_container{
+    width: 4%;
+    height: 4%
+}
+.copyright_name{
+    color: var(--bs-primary-orange);
+    text-decoration: none;
+    font-weight: bold;
+
+}
+/* end footer style */
