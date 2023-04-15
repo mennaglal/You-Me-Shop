@@ -30,7 +30,7 @@ make a program achieve the goal (You & Me Shop is a two-part online shopping web
  6) Show customer info with thier orders and thier invoices in the dashboard.
 
 ## Tools
-### Using PHP Laravel Framework ,MySql ,Html ,Css ,Bootstrap ,Javascript ,Jquery.
+### Using PHP Laravel Framework ,MySql ,Html ,Css ,Bootstrap ,Javascript ,Jquery And Ajax.
 ### Using Breeze authentication package.
 ### Using Spatie role and permission package.
 ### Using Mailable and Mailtrap package.
@@ -54,6 +54,3 @@ make a program achieve the goal (You & Me Shop is a two-part online shopping web
 ![invoice](https://user-images.githubusercontent.com/57074801/232200791-f3afebb6-7241-4b0f-a4b8-6a2b417bca36.png)
 
 ![mail](https://user-images.githubusercontent.com/57074801/232200797-81de5f52-e6ef-4ce1-a47f-128f4d4e03d9.png)
-
-
-
