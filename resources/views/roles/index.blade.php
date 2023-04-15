@@ -15,7 +15,6 @@
 
 @section('content')
     <!-- messages error and add ,edit delete messages -->
-    <!-- messages error and add ,edit delete messages -->
     <div class="row justify-content-center mt-4">
         <div class="col-11">
             @if ($errors->any())
@@ -135,16 +134,11 @@
 @section('js')
     <script src="{{asset('assets/ltr/js/scrollspyNav.js')}}"></script>
     <script>
-        checkall('todoAll', 'todochkbox');
-        $('[data-toggle="tooltip"]').tooltip()
-    </script>
-    <script>
         $('#deleteModal').on('show.bs.modal', function(event){
             var button = $(event.relatedTarget)
             var id = button.data('id')
             var modal = $(this)
             modal.find('.modal-footer .delete_form #id').val(id);
-
         });
     </script>
 @endsection

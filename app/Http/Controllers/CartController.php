@@ -4,11 +4,16 @@ use Cart;
 use Illuminate\Http\Request;
 class CartController extends Controller
 {
+    //get products in cart
+
     public function cartList()
     {
         $cartItems = \Cart::getContent();
         return view('visitor.cart', compact('cartItems'));
     }
+
+    //add product to cart
+
     public function addToCart(Request $request)
     {
         \Cart::add([
@@ -22,6 +27,9 @@ class CartController extends Controller
         ]);
         return response()->json(['done'=>1]);
     }
+
+    // update product quantity in cart
+
     public function updateCart(Request $request)
     {
         \Cart::update(
@@ -36,12 +44,18 @@ class CartController extends Controller
         session()->flash('success', 'Item Cart is Updated Successfully !');
         return redirect()->route('cart.list');
     }
+
+    //remove product from cart
+
     public function removeCart(Request $request)
     {
         \Cart::remove($request->id);
         session()->flash('success', 'Item Cart Remove Successfully !');
         return redirect()->route('cart.list');
     }
+
+    //remove all products from cart
+
     public function clearAllCart()
     {
         \Cart::clear();

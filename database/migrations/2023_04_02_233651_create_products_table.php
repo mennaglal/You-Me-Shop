@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->text('description');
             $table->double('price');
-            $table->string('image')->nullable();
+            $table->string('image');
             $table->double('weight');
             $table->unsignedBigInteger('shipping_rates_id');
             $table->foreign('shipping_rates_id')->references('id')->on('shipping_rates')->cascadeOnDelete()->cascadeOnUpdate();

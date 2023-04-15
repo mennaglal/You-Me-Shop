@@ -3,7 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CustomersController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
@@ -42,7 +42,7 @@ Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear'
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('products', ProductsController::class);
     Route::delete('products',[ProductsController::class,'destroy'])->name('products.destroy');
     Route::resource('categories', CategoriesController::class);

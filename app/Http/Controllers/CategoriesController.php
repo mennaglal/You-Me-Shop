@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
-    //prevent anyone go to users pages throughout the write users routes in URL-> only people who have these permissions can reach to it
+    //prevent anyone go to categories pages throughout the write categories routes in URL-> only people who have these permissions can reach to it
 
     function __construct()
     {
@@ -21,9 +21,11 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //get all categories and return it to categories page
+
     public function index()
     {
-        //get all categories and return it to categories page
         $categories = categories::all();
         return view('dashboard.categories.index',compact('categories'));
     }
@@ -33,9 +35,11 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //return to  create category page
+
     public function create()
     {
-        //return to  create categories page
         return view('dashboard.categories.create');
     }
 
@@ -45,11 +49,15 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    // add category
+
     public function store(Request $request)
     {
         //validation on request come from create category page
+
         $request->validate([
-            'name' => 'required|unique:categories,name,'.$request->id,
+            'name' => 'required|unique:categories',
             'description' => 'required',
 
         ],[
@@ -59,6 +67,7 @@ class CategoriesController extends Controller
         ]);
 
         // add record to categories table in database
+
         categories::create([
             'name' => $request->name,
             'description' => $request->description,
@@ -84,6 +93,9 @@ class CategoriesController extends Controller
      * @param  \App\Models\categories  $categories
      * @return \Illuminate\Http\Response
      */
+
+    //return to  edit category page
+
     public function edit($id)
     {
         $category = categories::find($id);
@@ -98,6 +110,9 @@ class CategoriesController extends Controller
      * @param  \App\Models\categories  $categories
      * @return \Illuminate\Http\Response
      */
+
+    //update category
+
     public function update(Request $request,$id)
     {
         //validation on request come from create category page
@@ -127,6 +142,9 @@ class CategoriesController extends Controller
      * @param  \App\Models\categories  $categories
      * @return \Illuminate\Http\Response
      */
+
+    //delete category
+
     public function destroy(Request $request)
     {
         //delete record from database

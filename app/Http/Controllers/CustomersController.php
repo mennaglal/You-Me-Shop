@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class CustomersController extends Controller
 {
+    //prevent anyone go to customers pages throughout the write customers routes in URL-> only people who have these permissions can reach to it
+
+
     function __construct()
     {
         $this->middleware('permission:customer-list', ['only' => ['index']]);
@@ -16,6 +19,9 @@ class CustomersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //get customers
+
     public function index()
     {
         $customers = customers::all();

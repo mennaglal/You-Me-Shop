@@ -86,7 +86,7 @@
                                         {{ $product->description }}
                                     </td>
 
-                                    <td>{{ $product->price }} $</td>
+                                    <td>{{'$'. $product->price }}</td>
                                     <td>
                                         @if($product->image==Null)
                                             <div class="mr-2">

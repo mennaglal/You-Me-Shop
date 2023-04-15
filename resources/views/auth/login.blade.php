@@ -69,7 +69,7 @@
             <div class="form" style="padding-top: 7%;padding-right: 7%;padding-left: 7%;padding-bottom: 0%;">
                 <form method="POST" action="{{ route('login') }}">
                 @csrf
-                <!--username-->
+                <!--email-->
                     <div id="username-field" class="field-wrapper input mb-4 d-flex" style="align-items: center;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user" style="color: #e96525  !important;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                         <input style="margin-right: 2%;" id="email" type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>

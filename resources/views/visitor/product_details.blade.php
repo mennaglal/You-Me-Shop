@@ -13,7 +13,7 @@
 @section('content')
     <main>
 
-        <!-------------- begin products menu --------------->
+        <!-------------- product info --------------->
 
                 <div class="container mb-5 mt-5">
                     <h1 class="products_menu mt-3 mb-3">{{$product->name .' Info'}}</h1>
@@ -24,7 +24,7 @@
                             <p class="lead">{{$product->description}}.</p>
                             <p class="card-text ">Weight is <span class="product_number">{{$product->weight}}</span> kg</p>
                            <div>
-                               <span class="product_price ">{{$product->price}} $</span>
+                               <span class="product_price ">${{$product->price}} </span>
                                <form id="AddToCart_form">
                                    @csrf
                                    <input type="hidden" value="{{ $product->id }}" name="id">
@@ -45,7 +45,6 @@
                             </div>
                         </div>
                     </div>
-            <!-------------- end products menu --------------->
         </main>
     @endsection
     @section('script')
@@ -63,7 +62,7 @@
                                 toast: true,
                                 position: 'top-end',
                                 showConfirmButton: false,
-                                timer: 3000,
+                                timer: 2000,
                                 timerProgressBar: true,
                                 didOpen: (toast) => {
                                     toast.addEventListener('mouseenter', Swal.stopTimer)

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\File;
 
 class ProductsController extends Controller
 {
-    //prevent anyone go to users pages throughout the write users routes in URL-> only people who have these permissions can reach to it
+    //prevent anyone go to products pages in dashboard throughout the write products routes in URL-> only people who have these permissions can reach to it
 
     function __construct()
     {
@@ -24,6 +24,9 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //get all products
+
     public function index()
     {
         $products = products::all();
@@ -35,6 +38,9 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    // return to create product page
+
     public function create()
     {
         $shipping_rates=shipping_rates::all();
@@ -49,11 +55,14 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    // add product
+
     public function store(Request $request)
     {
         $request->validate([
             'category_id' => 'required:products',
-            'name' => 'required|max:255|unique:products,name,'.$request->id,
+            'name' => 'required|max:255|unique:products',
             'description' => 'required:products',
             'price' => 'required:products',
             'weight' => 'required:products',
@@ -98,6 +107,9 @@ class ProductsController extends Controller
      * @param  \App\Models\products  $products
      * @return \Illuminate\Http\Response
      */
+
+    //get product by id
+
     public function show($id)
     {
         $product=products::find($id);
@@ -111,6 +123,9 @@ class ProductsController extends Controller
      * @param  \App\Models\products  $products
      * @return \Illuminate\Http\Response
      */
+
+    // get product and return to edit product page
+
     public function edit($id)
     {
         $products = products::find($id);
@@ -127,6 +142,8 @@ class ProductsController extends Controller
      * @param  \App\Models\products  $products
      * @return \Illuminate\Http\Response
      */
+
+    // update product
     public function update(Request $request, $product_id)
     {
         $product_image = products::select('image')->where('id', $product_id)->first()->image;
@@ -179,6 +196,8 @@ class ProductsController extends Controller
      * @param  \App\Models\products  $products
      * @return \Illuminate\Http\Response
      */
+
+    // delete product
     public function destroy(Request $request)
     {
         $product_img = products::where('id', $request->id)->first()->image;

@@ -6,12 +6,14 @@ use App\Models\customers;
 use App\Models\discount_offers;
 use App\Models\invoices;
 use App\Models\orders;
-use App\Models\products;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class InvoicesController extends Controller
 {
+    //prevent anyone go to invoices pages in dashboard throughout the write invoices routes in URL-> only people who have these permissions can reach to it
+
+
     function __construct()
     {
         $this->middleware('permission:invoice-list', ['only' => ['index']]);
@@ -21,6 +23,9 @@ class InvoicesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //get all invoices
+
     public function index()
     {
         $invoices=invoices::all();
@@ -55,19 +60,24 @@ class InvoicesController extends Controller
      * @param  \App\Models\invoices  $invoices
      * @return \Illuminate\Http\Response
      */
+
+    // get invoice for customer who finish order
+
     public function show($order_id)
     {
         // get order
+
         $order = orders::find($order_id);
 
         // get customer
-        $customer_id = invoices::select('customer_id')->where('order_id',$order_id)->first()->customer_id;
 
+        $customer_id = invoices::select('customer_id')->where('order_id',$order_id)->first()->customer_id;
         $customer = customers::find($customer_id);
 
         //get invoice info
 
         $invoices = invoices::where('order_id',$order_id)->get();
+
 
         //get calculations in invoice
 
@@ -80,7 +90,20 @@ class InvoicesController extends Controller
 
         $discount_offers = discount_offers::where('order_id',$order_id)->get();
 
-        session()->flash('add', 'Add Order Done Successfully');
+        // inputs will send in email to customer
+
+        $email = $customer->customer_email;
+        $mailData = [
+            'title' => 'Order Invoice',
+            'url' => 'https://You-Me-Shop.test/invoice_show'.$order_id,
+            'customer_name'=>$customer->customer_name,
+            'total_price'=>$total_price,
+        ];
+
+        // send email to customer who make order and take his invoice
+
+        Mail::to($email)->send(new \App\Mail\AddInvoice($mailData));
+
         return view('visitor.invoice',compact(
             'invoices','discount_offers','subtotal_price','shipping_price','vat_price','total_price','order','customer'));
     }

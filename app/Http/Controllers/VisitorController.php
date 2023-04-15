@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class VisitorController extends Controller
 {
+    //  return to visitor website
     public function index()
     {
         $products=products::all();

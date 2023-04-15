@@ -94,6 +94,7 @@ body{
 .product_name{
     color: var(--bs-primary-orange) !important;
     font-weight: bold;
+    text-transform: capitalize;
 }
 .product_number{
     color: var(--bs-primary-orange);

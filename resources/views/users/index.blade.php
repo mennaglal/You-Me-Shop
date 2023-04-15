@@ -143,16 +143,11 @@
 @section('js')
     <script src="{{asset('assets/ltr/js/scrollspyNav.js')}}"></script>
     <script>
-        checkall('todoAll', 'todochkbox');
-        $('[data-toggle="tooltip"]').tooltip()
-    </script>
-    <script>
         $('#deleteModal').on('show.bs.modal', function(event){
             var button = $(event.relatedTarget)
             var id = button.data('id')
             var modal = $(this)
             modal.find('.modal-footer .delete_form #id').val(id);
-
         });
     </script>
 @endsection

@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.master')
-@section('page-title','Users')
+@section('page-title','Add-User')
 @section('content')
 
     <div class="row mt-4 justify-content-center">

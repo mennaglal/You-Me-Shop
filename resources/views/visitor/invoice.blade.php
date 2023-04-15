@@ -5,6 +5,8 @@
 @endsection
 @section('css')
     <link href="{{asset('front_assets/invoice.css')}}" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
+
 @endsection
 @section('content')
     <div class="container mb-5">
@@ -39,9 +41,9 @@
                 @foreach ($invoices as $invoice)
                 <tr>
                     <td class="product_name_invoice">{{ $invoice->product->name}}</td>
-                    <td>{{ $invoice->product->price}} $</td>
+                    <td>${{ $invoice->product->price}}</td>
                     <td>{{ $invoice->product_quantity}}</td>
-                    <td>{{ $invoice->product_total_price }} $</td>
+                    <td>${{ $invoice->product_total_price }}</td>
                 </tr>
                 @endforeach
                 </tbody>
@@ -53,28 +55,30 @@
 
         <div class="row">
             <div class="col-6 col-md-4 mb-2">
-                <h5>Subtotal: </h5> <span class="result_num">  {{$subtotal_price .'$'}} </span>
+                <h5>Subtotal: </h5> <span class="result_num">  {{'$'.$subtotal_price}} </span>
             </div>
             <div class="col-6 col-md-4 mb-2">
-                <h5>Shipping: </h5> <span class="result_num">  {{$shipping_price .'$'}}</span>
+                <h5>Shipping: </h5> <span class="result_num">  {{'$'.$shipping_price}}</span>
             </div>
             <div class="col-6 col-md-4 mb-2">
-                <h5>VAT: </h5> <span class="result_num">  {{$vat_price .'$'}}</span>
+                <h5>VAT: </h5> <span class="result_num">  {{'$'.$vat_price}}</span>
             </div>
             <div class="col-6 col-md-4 mb-2">
                 <h5 class="mb-2">Discounts: </h5>
                 <ul>
                     @foreach ($discount_offers as $discount_offer)
-                        <li class="result_num">{{$discount_offer->offer_name .' : -'. $discount_offer->offer_price .'$'}}</li>
+                        <li class="result_num">{{$discount_offer->offer_name .' : -'.'$'. $discount_offer->offer_price }}</li>
                     @endforeach
                 </ul>
             </div>
             <div class="col-6 col-md-4 mb-2">
-                <h5 class="mb-2">Total: </h5> <span class="result_total">  {{$total_price .'$'}}</span>
+                <h5 class="mb-2">Total: </h5> <span class="result_total">  {{'$'.$total_price}}</span>
             </div>
 
         </div>
 
         <!-------------- end invoice calculations list --------------->
     </div>
+@endsection
+@section('script')
 @endsection

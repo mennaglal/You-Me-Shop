@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\categories;
 use App\Models\discount_offers;
 use App\Models\invoices;
 use App\Models\orders;
@@ -18,6 +19,8 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //get products in cart and return it
+
     public function index()
     {
         $cartItems = \Cart::getContent();
@@ -40,6 +43,9 @@ class OrdersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    // add order
+
     public function store(Request $request)
     {
         //get time now and add it to order date in orders table and order id to add it in invoice table
@@ -78,7 +84,8 @@ class OrdersController extends Controller
         $total=0;
         $count_two_tops=0;
 
-        //get count product if >= 2 then $10 of shipping discount exists and add it discount offers table
+        //get count product in cart if >= 2 then $10 of shipping discount exists and add it discount offers table
+
         $cartItems = \Cart::getContent();
         $product_count=count($cartItems);
         if($product_count>=2){
@@ -91,15 +98,19 @@ class OrdersController extends Controller
 
         foreach ($cartItems as $selectedOption) {
 
-            //get info for every product to calculate subtotal , shippings, vat
+            //get info for every product to calculate subtotal , shippings, vat ,total price for every product
 
-            $productName = products::where('id',$selectedOption->id)->first()->name;
+            $cat_id = products::select('category_id')->where('id', $selectedOption->id)->first();
+            $category_id=$cat_id->category_id;
+            $cat_name = categories::select('name')->where('id', $category_id)->first();
+            $category_name=$cat_name->name;
+
             $proPrice = products::where('id',$selectedOption->id)->first()->price;
             $productWeight = products::where('id',$selectedOption->id)->first()->weight;
             $shipping_rates_id = products::where('id',$selectedOption->id)->first()->shipping_rates_id;
 
             // every product price =price * quantity
-            $productPrice=$proPrice*$selectedOption->quantity;
+            $productPrice=doubleval($proPrice*$selectedOption->quantity);
 
             //get shipping_rate to calculate shippings
 
@@ -107,7 +118,7 @@ class OrdersController extends Controller
 
             //check if  shoes exist in products then 10% off shoes discount exists and add it discount offers table
 
-            if(strtolower($productName)=='shoes'){
+            if(strtolower($category_name)=='shoes'){
                 discount_offers::create([
                     'offer_name' => '10% off shoes',
                     'offer_price' => doubleval($productPrice*0.1),
@@ -116,27 +127,31 @@ class OrdersController extends Controller
             }
             //count tops (t-shirt or blouse)
 
-            if(strtolower($productName)=='t-shirt'|| strtolower($productName)=='blouse'){
+            if(strtolower($category_name)=='t-shirt'|| strtolower($category_name)=='blouse'){
                 $count_two_tops+=intval($selectedOption->quantity);
             }
 
             // calculate subtotal , shippings, vat
 
-            $subtotal+=$productPrice;
-            $shippings+=(($productWeight*1000)/100)*$shipping_rate;
-            $vat_price+=$productPrice*0.14;
+            $subtotal+=doubleval($productPrice);
+            $shippings+=doubleval((($productWeight*1000)/100)*$shipping_rate);
+            $vat_price+=doubleval($productPrice*0.14);
         }
         foreach ($cartItems as $selectedOption) {
 
-            $productName = products::where('id',$selectedOption->id)->first()->name;
+            $cat_id = products::select('category_id')->where('id', $selectedOption->id)->first();
+            $category_id=$cat_id->category_id;
+            $cat_name = categories::select('name')->where('id', $category_id)->first();
+            $category_name=$cat_name->name;
+
             $proPrice = products::where('id',$selectedOption->id)->first()->price;
 
             // every product price =price * quantity
-            $productPrice=$proPrice*$selectedOption->quantity;
+            $productPrice=doubleval($proPrice*$selectedOption->quantity);
 
             //check if  two tops (t-shirt or blouse) exist then 50% off jacket discount exists and add it discount offers table
 
-            if(strtolower($productName)=='jacket' &&$count_two_tops>=2){
+            if(strtolower($category_name)=='jacket' &&$count_two_tops>=2){
                 discount_offers::create([
                     'offer_name' => '50% off jacket',
                     'offer_price' => doubleval($productPrice*0.5),
@@ -168,6 +183,8 @@ class OrdersController extends Controller
                 'total_price' => doubleval($total),
             ]);
         }
+        // clear cart from all product after finish order and make invoice
+
         \Cart::clear();
         // take order id and go to invoice controller
         return redirect()->route('invoice_show',$order_id);

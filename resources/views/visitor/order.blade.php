@@ -1,7 +1,7 @@
 @extends("visitor.layouts.master")
 
 @section('page-title')
-    Cart
+    Order
 @endsection
 @section('css')
     <link href="{{asset('front_assets/order.css')}}" rel="stylesheet" type="text/css" />
@@ -44,6 +44,7 @@
         <div class="order_form card shadow-sm">
             <form method="post" action="{{route('orders.store')}}">
                 @csrf
+                <!--------------- customer info ------------------->
                 <div class="row mb-5 mt-5">
                     <div class="col-4 mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="Customer Name" required name="customer_name">

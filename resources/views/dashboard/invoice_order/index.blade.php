@@ -66,13 +66,13 @@
                                 </td>
                                 <td>{{ $invoice->product->weight}}Kg</td>
                                 <td>{{ $invoice->product->ShippingRate->country}}</td>
-                                <td>{{ $invoice->product->price }}$</td>
+                                <td>{{ '$'.$invoice->product->price }}</td>
                                 <td>{{$invoice->product_quantity}} </td>
-                                <td>{{$invoice->product_total_price}}$</td>
-                                <td>{{$invoice->subtotal_price}}$</td>
-                                <td>{{$invoice->shipping_price}}$</td>
-                                <td>{{$invoice->vat_price}}$</td>
-                                <td>{{$invoice->total_price}}$</td>
+                                <td>{{'$'.$invoice->product_total_price}}</td>
+                                <td>{{'$'.$invoice->subtotal_price}}</td>
+                                <td>{{'$'.$invoice->shipping_price}}</td>
+                                <td>{{'$'.$invoice->vat_price}}</td>
+                                <td>{{'$'.$invoice->total_price}}</td>
 
                             </tr>
                         @endforeach

@@ -20,14 +20,14 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{asset('front_assets/cover4.jpg')}}" class="d-block w-100 carousel_img" alt="...">
+                    <img src="{{asset('front_assets/images/cover4.jpg')}}" class="d-block w-100 carousel_img" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h1 class="welcome_name">You & Me<span class="welcome_span">Shop</span></h1>
                         <h5 class="welcome_text">Easy World Wide Delivery.</h5>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="{{asset('front_assets/cover5.jpg')}}" class="d-block w-100 carousel_img" alt="...">
+                    <img src="{{asset('front_assets/images/cover5.jpg')}}" class="d-block w-100 carousel_img" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h1 class="welcome_name">You & Me<span class="welcome_span">Shop</span></h1>
                         <h5 class="welcome_text">Always offers and discounts.</h5>
@@ -104,37 +104,5 @@
            </div>
         <!-------------- end products menu --------------->
     </main>
-@endsection
-@section('script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        $('#AddToCart_btn').click(function () {
-            var data = $("#AddToCart_form").serialize();
-            $.ajax({
-                type:'POST',
-                url:'{{route('cart.store')}}',
-                data:data,
-                success:function(data) {
-                    if(data.done == 1){
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'bottom-end',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
-                        Toast.fire({
-                            icon: 'success',
-                            title: 'Added successfully. Refresh Please.'
-                        })
-                    }
-                }
-            });
-        });
-    </script>
 @endsection
 

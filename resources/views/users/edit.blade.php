@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.master')
-@section('page-title','Users')
+@section('page-title','Edit-User')
 @section('css')
     <link href="{{asset('assets/ltr/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets/ltr/css/forms/theme-checkbox-radio.css')}}" />
