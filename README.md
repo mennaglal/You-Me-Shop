@@ -26,14 +26,16 @@ make a program achieve the goal (You & Me Shop is a two-part online shopping web
  3) Added a User Roles and Permissions to the dashboard -> (Spatie package).
  4) Added a category section to the dashboard with add, update and delete functions.
  5) Added products belong for each category in the dashboard with add, update and delete functions.
- 6) Send email for customer after compelete order and get his invoice -> (Mailable and Mailtrap)
- 6) Show customer info with thier orders and thier invoices in the dashboard.
+ 6) Add to cart by setup  -> (darryldecode/cart package) 
+ 7) Send email for customer after compelete order and get his invoice -> (Mailable and Mailtrap)
+ 8) Show customer info with thier orders and thier invoices in the dashboard.
 
 ## Tools
 ### Using PHP Laravel Framework ,MySql ,Html ,Css ,Bootstrap ,Javascript ,Jquery And Ajax.
 ### Using Breeze authentication package.
 ### Using Spatie role and permission package.
 ### Using Mailable and Mailtrap package.
+### Using darryldecode/cart package
 
 ## **Screenshots for Dashboard and Front Webpage:**
 ### **Unit Test**
